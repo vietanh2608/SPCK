@@ -1,0 +1,11 @@
+.card-body{
+    background-color: #1D1D1D;  
+}
+.mb-3 form-control{
+    border-radius: 20px;
+    background-color: #1D1D1D;
+}
+button .btn.btn-primary :hover{
+    background-color: gray;
+
+}

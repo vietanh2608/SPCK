@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="login.css"> -->
+
+</head>
+
+<body style=" background-color: #1D1D1D;
+background-color: #000;
+background: #1D1D1D;">
+    <nav class="navbar navbar-expand-lg "
+        style="position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;background-color: rgb(39, 38, 38); ">
+        <div class="container">
+            <!-- Brand/logo -->
+            <a class="navbar-brand" href="#Home"
+                style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color: aliceblue;">🏆ChampionStore</a>
+
+            <!-- Toggler for responsive -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="About.html" style="color: white;">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html" style="color: white;">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Signup.html" style="color: white;">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"
+                            style="margin-left: 157px;font-family: cursive; font-size: 20px;background-color: black;color: white;">FootBall</a>
+                    </li>
+                </ul>
+                <!-- Optional button or dropdown -->
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <div class="container">
+        <div class="row justify-content-center" style="margin-top: 100px;">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-white text-center" style="background-color: gray;">
+                        <h3>Register</h3>
+                    </div>
+                    <div class="card-body" style=" background-color: #1D1D1D;
+                    background-color: #000;
+                    background: #1D1D1D;">
+                        <form id="wrapper" action="login.html">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="username" placeholder="Username" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="email" placeholder="Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" id="password" placeholder="Password"
+                                    required>
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="password" class="form-control" placeholder="Confirm Password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary"
+                                style="border-radius: 20px;color: black; background-color: aliceblue;">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5" style="top: 100px;position: relative;">
+        <p>&copy; 2025 Your Company. All rights reserved.</p>
+    </footer>
+
+
+    <script>
+        document.getElementById("wrapper").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const id = `user-${Date.now()}`;
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const email = document.getElementById("email").value;
+            const role = 'User';
+
+            if (isUsernametaken(username)) {
+
+                alert("Username đã được sử dụng. Vui lòng chọn tên người dùng khác.");
+            } else {
+                const newUser = { username, password, email, role, id };
+                console.log(newUser);
+                const users = JSON.parse(localStorage.getItem("users")) || [];
+                users.push(newUser);
+                localStorage.setItem("users", JSON.stringify(users));
+                alert("Đăng ký thành công!");
+                window.location.href = "./login.html";
+            }
+        })
+        function isUsernametaken(username) {
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            return users.some(user => user.username === username);
+        }
+    </script>
+</body>
+
+</html>
